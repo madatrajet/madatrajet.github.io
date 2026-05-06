@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Mada Trajet</title>
+
+<style>
+  h1{color:black;}
+  p{color:black;}
+  #form1{
+  display:flex;
+  flex-direction:column;
+  gap:12px; /* espace entre provinces */
+  margin-top:20px;
+}
+
+#form1 label{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:14px 12px;
+  border-radius:14px;
+  background:#fff;
+  box-shadow:0 4px 12px rgba(0,0,0,0.05);
+  cursor:pointer;
+  transition:0.2s;
+}
+
+#form1 label:hover{
+  background:#f7f7f7;
+  transform:scale(1.01);
+}
+
+#form1 input[type="radio"]{
+  transform:scale(1.2);
+}
+.option{
+  display:flex;
+  align-items:center;
+  padding:20px 20px;
+  margin:20px 0;
+  border-radius:14px;
+  background:#fff;
+  box-shadow:0 8px 24px rgba(0,0,0,0.05);
+  cursor:pointer;
+  transition:0.2s;
+  gap:12px; /* 💡 espace entre radio et texte */
+}
+
+.option:hover{
+  background:#f7f7f7;
+  transform:scale(1.01);
+}
+
+.option input{
+  transform:scale(1.2);
+}
+body{
+  height: 100%;
+  margin:0;
+  font-family:Segoe UI;
+  background:linear-gradient(180deg, #f8f9fb, #eef2f6);
+  color:white;
+  text-align:center;
+  padding:30px;
+}
+
+.card{
+  background:white;
+  color:black;
+  padding:20px;
+  border-radius:15px;
+  max-width:400px;
+  margin:auto;
+}
+
+button{
+  width:100%;
+  padding:15px;
+  background:black;
+  color:white;
+  border:none;
+  border-radius:10px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Mada Trajet 🚍</h1>
+<p>Veuillez choisir votre province de destination :</p>
+
+<form id="form1" class="card">
+
+<label><input type="radio" name="province" value="Toamasina"> Toamasina</label>
+<label><input type="radio" name="province" value="Mahajanga"> Mahajanga</label>
+<label><input type="radio" name="province" value="Antsiranana"> Antsiranana</label>
+
+<button>Continuer</button>
+
+</form>
+
+<script>
+document.getElementById("form1").addEventListener("submit", function(e){
+e.preventDefault();
+
+const selected = document.querySelector('input[name="province"]:checked');
+
+if(!selected){
+alert("Choisis une province 😭");
+return;
+}
+
+localStorage.setItem("region", selected.value);
+window.location.href="index3.html";
+
+});
+</script>
+
+</body>
+</html>

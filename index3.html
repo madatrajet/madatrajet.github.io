@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Choisir ville</title>
+
+<style>
+#villes{
+  margin-top:15px;
+  margin-bottom:25px; /* 💡 espace avant le bouton */
+  display:flex;
+  flex-direction:column;
+  gap:10px; /* espace entre les cartes */
+}
+body{
+  font-family:Segoe UI;
+  background:#eef2f6;
+}
+
+.container{
+  max-width:800px;
+  margin:auto;
+  padding:30px;
+}
+
+.card{
+  background:white;
+  padding:30px;
+  border-radius:30px;
+}
+
+button{
+  width:100%;
+  padding:15px;
+  background:#0d6efd;
+  color:white;
+  border:none;
+  border-radius:10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Sélectionnez votre lieu d'arrivée</h2>
+
+<form id="form2" class="card">
+<div id="villes"></div>
+
+<button>Rechercher</button>
+</form>
+
+</div>
+
+<script src="data.js"></script>
+
+<script>
+
+const region = localStorage.getItem("region");
+const villesDiv = document.getElementById("villes");
+
+const villes = mapping[region] || [];
+
+villes.forEach(v => {
+villesDiv.innerHTML += `
+<label><input type="radio" name="ville" value="${v}"> ${v}</label>
+`;
+});
+
+document.getElementById("form2").addEventListener("submit", function(e){
+
+e.preventDefault();
+
+const selected = document.querySelector('input[name="ville"]:checked');
+
+if(!selected){
+alert("Choisis une ville 😭");
+return;
+}
+
+localStorage.setItem("ville", selected.value);
+window.location.href="index4.html";
+
+});
+
+</script>
+
+</body>
+</html>

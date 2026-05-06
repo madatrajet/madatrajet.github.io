@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Résultats</title>
+
+<style>
+body{
+  font-family:Segoe UI;
+  background:linear-gradient(180deg, #f8f9fb, #eef2f6);
+  padding:20px;
+}
+
+.container{
+  max-width:700px;
+  margin:auto;
+}
+
+.card{
+  background:white;
+  border-radius:15px;
+  padding:15px;
+  margin:10px 0;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2 id="title"></h2>
+<div id="resultat"></div>
+
+</div>
+
+<script src="data.js"></script>
+
+<script>
+
+const ville = localStorage.getItem("ville");
+const depart = "Antananarivo";
+
+document.getElementById("title").innerText = `${depart} → ${ville}`;
+
+const resultats = busData.filter(b =>
+b.depart===depart && b.arrivee===ville
+);
+
+const div = document.getElementById("resultat");
+
+if(resultats.length===0){
+div.innerHTML="<p>Aucun trajet 😕</p>";
+}
+else{
+resultats.forEach(b=>{
+
+div.innerHTML+=`
+<div class="card">
+<h3>${b.coop}</h3>
+<p>${b.depart} → ${b.arrivee}</p>
+<p>💰 ${b.prix || "Non défini"}</p>
+<p>⏰ ${b.heureDepart || "Non défini"}</p>
+<p>${b.numero.map(n=>"📞 "+n).join("<br>")}</p>
+</div>
+`;
+
+});
+}
+
+</script>
+
+</body>
+</html>

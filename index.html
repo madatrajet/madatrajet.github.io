@@ -1,0 +1,254 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mada Trajet - Accueil</title>
+
+<style>
+  /* ABOUT BUTTON */
+.about-btn{
+  position:fixed;
+  top:15px;
+  left:15px;
+  background:white;
+  padding:10px 14px;
+  border-radius:12px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.1);
+  cursor:pointer;
+  font-size:14px;
+  transition:0.2s;
+}
+
+.about-btn:hover{
+  transform:scale(1.05);
+}
+
+/* MODAL */
+.modal{
+  display:none;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.5);
+  justify-content:center;
+  align-items:center;
+}
+
+.modal-content{
+  background:white;
+  padding:25px;
+  border-radius:15px;
+  max-width:400px;
+  text-align:left;
+  animation:pop 0.2s ease;
+}
+
+@keyframes pop{
+  from{transform:scale(0.8); opacity:0;}
+  to{transform:scale(1); opacity:1;}
+}
+
+.close{
+  float:right;
+  cursor:pointer;
+  font-size:18px;
+}
+
+body{
+  margin:0;
+  font-family:'Segoe UI', sans-serif;
+  background:linear-gradient(180deg, #f5f6f8, #e9edf2);
+  color:#111;
+}
+
+/* NAV */
+.nav{
+  display:flex;
+  justify-content:space-between;
+  padding:20px;
+  max-width:1000px;
+  margin:auto;
+}
+
+.logo{
+  font-weight:bold;
+  font-size:20px;
+}
+
+/* HERO */
+.hero{
+  text-align:center;
+  padding:60px 20px;
+}
+
+.hero h1{
+  font-size:32px;
+  margin-bottom:10px;
+}
+
+.hero p{
+  color:#555;
+  max-width:500px;
+  margin:auto;
+}
+
+/* BUTTON */
+.cta{
+  margin-top:30px;
+}
+
+.cta a{
+  display:inline-block;
+  padding:15px 25px;
+  background:black;
+  color:white;
+  border-radius:12px;
+  text-decoration:none;
+  font-size:16px;
+  transition:0.2s;
+}
+
+.cta a:hover{
+  background:#222;
+  transform:scale(1.05);
+}
+
+/* FEATURES */
+.features{
+  max-width:900px;
+  margin:60px auto;
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(250px,1fr));
+  gap:20px;
+  padding:0 20px;
+}
+
+.feature{
+  background:white;
+  padding:20px;
+  border-radius:16px;
+  box-shadow:0 8px 25px rgba(0,0,0,0.05);
+}
+
+.feature h3{
+  margin-bottom:10px;
+}
+
+.feature p{
+  color:#666;
+}
+
+/* FOOTER */
+.footer{
+  text-align:center;
+  padding:30px;
+  color:#777;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+<div class="nav">
+  <div class="logo">🚍 Mada Trajet</div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>Voyagez facilement à Madagascar</h1>
+  <p>
+    Trouvez rapidement les coopératives disponibles pour votre trajet depuis Antananarivo vers toute l'île.
+  </p>
+
+  <div class="cta">
+    <a href="index2.html">Commencer</a>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<div class="features">
+
+  <div class="feature">
+    <h3>🔎 Recherche simple</h3>
+    <p>Choisissez votre province et trouvez les trajets disponibles en quelques secondes.</p>
+  </div>
+
+  <div class="feature">
+    <h3>📍 Informations utiles</h3>
+    <p>Accédez aux prix, horaires et numéros des coopératives facilement.</p>
+  </div>
+
+  <div class="feature">
+    <h3>🚐 Plusieurs coop</h3>
+    <p>Comparez différentes options pour un même trajet.</p>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  © 2026 Mada Trajet
+</div>
+<!-- ABOUT BUTTON -->
+<div class="about-btn" onclick="openAbout()">ℹ️ À propos</div>
+
+<!-- MODAL -->
+<div id="aboutModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeAbout()">✖</span>
+
+    <h2>À propos de nous</h2>
+
+    <p>
+      Nous sommes des étudiants en L1 à ISPM dans la filière ISAIA.
+    </p>
+
+    <p>
+      Moi, Hassin, je me suis occupé du code JavaScript.
+    </p>
+
+    <p>
+      Vaniala, Lucka et Tsiory se sont occupés de la collecte et du tri des données.
+    </p>
+
+    <p>
+      Nandrianina s’est occupée du livret concernant ce projet.
+    </p>
+
+    <p>
+      Mahefa s’est occupé du code HTML.
+    </p>
+
+    <p>
+      Si vous constatez des erreurs, veuillez nous en faire part au : <br>
+      <strong>034 19 807 82</strong>
+    </p>
+  </div>
+</div>
+
+<script>
+function openAbout(){
+  document.getElementById("aboutModal").style.display = "flex";
+}
+
+function closeAbout(){
+  document.getElementById("aboutModal").style.display = "none";
+}
+
+// fermer si clic dehors
+window.onclick = function(e){
+  const modal = document.getElementById("aboutModal");
+  if(e.target === modal){
+    modal.style.display = "none";
+  }
+}
+</script>
+
+</body>
+</html>
