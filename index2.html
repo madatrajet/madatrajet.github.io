@@ -6,13 +6,34 @@
 <title>Mada Trajet</title>
 
 <style>
-  h1{color:black;}
-  p{color:black;}
-  #form1{
+
+body{
+  margin:0;
+  padding:30px;
+  font-family:'Segoe UI', sans-serif;
+  background:linear-gradient(180deg,#f8f9fb,#eef2f6);
+  text-align:center;
+}
+
+h1,
+p{
+  color:black;
+}
+
+#form1{
   display:flex;
   flex-direction:column;
-  gap:12px; /* espace entre provinces */
+  gap:12px;
   margin-top:20px;
+}
+
+.card{
+  background:white;
+  color:black;
+  padding:20px;
+  border-radius:15px;
+  max-width:400px;
+  margin:auto;
 }
 
 #form1 label{
@@ -35,45 +56,6 @@
 #form1 input[type="radio"]{
   transform:scale(1.2);
 }
-.option{
-  display:flex;
-  align-items:center;
-  padding:20px 20px;
-  margin:20px 0;
-  border-radius:14px;
-  background:#fff;
-  box-shadow:0 8px 24px rgba(0,0,0,0.05);
-  cursor:pointer;
-  transition:0.2s;
-  gap:12px; /* 💡 espace entre radio et texte */
-}
-
-.option:hover{
-  background:#f7f7f7;
-  transform:scale(1.01);
-}
-
-.option input{
-  transform:scale(1.2);
-}
-body{
-  height: 100%;
-  margin:0;
-  font-family:Segoe UI;
-  background:linear-gradient(180deg, #f8f9fb, #eef2f6);
-  color:white;
-  text-align:center;
-  padding:30px;
-}
-
-.card{
-  background:white;
-  color:black;
-  padding:20px;
-  border-radius:15px;
-  max-width:400px;
-  margin:auto;
-}
 
 button{
   width:100%;
@@ -82,8 +64,11 @@ button{
   color:white;
   border:none;
   border-radius:10px;
+  cursor:pointer;
 }
+
 </style>
+  
 </head>
 
 <body>
