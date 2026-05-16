@@ -194,7 +194,6 @@ const mapping = {
     "Ambato Boeny",
     "Mampikony",
     "Antsohihy",
-    "Port Bergé",
     "Maintirano",
     "Mandritsara",
     "Amboromalandy",
