@@ -1,47 +1,75 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mada Trajet - Accueil</title>
 
 <style>
 
-body{
-  margin:0;
-  font-family:'Segoe UI', sans-serif;
-  background:linear-gradient(180deg, #f5f6f8, #e9edf2);
-  color:#111;
-}
-
 /* NAV */
 .nav{
-  padding:20px;
-  max-width:1000px;
-  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px 30px;
+  background:#0f172a;
 }
 
 .logo{
   font-weight:bold;
-  font-size:20px;
+  font-size:40px;
+  color:white;
+}
+
+/* ABOUT */
+.about-btn{
+  background:white;
+  padding:10px 14px;
+  border-radius:12px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.1);
+  cursor:pointer;
+  color:#0f172a;
+  transition:0.2s;
+}
+
+.about-btn:hover{
+  transform:scale(1.05);
+}
+
+/* PARTIE BLANCHE */
+body{
+  margin:0;
+  font-family:'Segoe UI', sans-serif;
+  background:#0f172a;
+  color:#111;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+}
+
+.main{
+  background:white;
+  border-radius:30px 30px 0 0;
+  padding:50px 20px;
+  flex:1;
 }
 
 /* HERO */
 .hero{
   text-align:center;
-  padding:60px 20px;
 }
 
 .hero h1{
-  font-size:32px;
+  font-size:38px;
   margin-bottom:10px;
 }
 
 .hero p{
   color:#555;
-  max-width:500px;
+  max-width:600px;
   margin:auto;
+  font-size:18px;
 }
 
 /* BUTTON */
@@ -52,33 +80,43 @@ body{
 .cta a{
   display:inline-block;
   padding:15px 25px;
-  background:black;
+  background:#0f172a;
   color:white;
   border-radius:12px;
   text-decoration:none;
   transition:0.2s;
+  font-size:16px;
 }
 
 .cta a:hover{
-  background:#222;
+  background:#1e293b;
   transform:scale(1.05);
 }
 
 /* FEATURES */
 .features{
-  max-width:900px;
-  margin:60px auto;
+  max-width:1000px;
+  margin:70px auto;
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
   gap:20px;
-  padding:0 20px;
 }
 
 .feature{
-  background:white;
-  padding:20px;
-  border-radius:16px;
-  box-shadow:0 8px 25px rgba(0,0,0,0.05);
+  background:#f8fafc;
+  padding:25px;
+  border-radius:18px;
+  border:1px solid #ddd;
+  transition:0.2s;
+}
+
+.feature:hover{
+  transform:translateY(-5px);
+  box-shadow:0 10px 20px rgba(0,0,0,0.08);
+}
+
+.feature h3{
+  margin-bottom:10px;
 }
 
 .feature p{
@@ -88,24 +126,9 @@ body{
 /* FOOTER */
 .footer{
   text-align:center;
-  padding:30px;
-  color:#777;
-}
-
-/* ABOUT */
-.about-btn{
-  position:fixed;
-  top:15px;
-  left:15px;
-  background:white;
-  padding:10px 14px;
-  border-radius:12px;
-  box-shadow:0 4px 12px rgba(0,0,0,0.1);
-  cursor:pointer;
-}
-
-.about-btn:hover{
-  transform:scale(1.05);
+  padding:20px;
+  color:white;
+  background:#0f172a;
 }
 
 /* MODAL */
@@ -129,6 +152,7 @@ body{
 .close{
   float:right;
   cursor:pointer;
+  font-size:18px;
 }
 
 @keyframes pop{
@@ -151,36 +175,57 @@ body{
 <!-- NAV -->
 <div class="nav">
   <div class="logo">🚍 Mada Trajet</div>
-</div>
 
-<!-- HERO -->
-<div class="hero">
-  <h1>Voyagez facilement à Madagascar</h1>
-  <p>
-    Trouvez rapidement les coopératives disponibles pour votre trajet depuis Antananarivo vers toute l'île.
-  </p>
-
-  <div class="cta">
-    <a href="index2.html">Commencer</a>
+  <div class="about-btn" onclick="openAbout()">
+    ℹ️ À propos
   </div>
 </div>
 
-<!-- FEATURES -->
-<div class="features">
+<!-- PARTIE BLANCHE -->
+<div class="main">
 
-  <div class="feature">
-    <h3>🔎 Recherche simple</h3>
-    <p>Choisissez votre province et trouvez les trajets disponibles en quelques secondes.</p>
+  <!-- HERO -->
+  <div class="hero">
+
+    <h1>Voyagez facilement à Madagascar</h1>
+
+    <p>
+      Trouvez rapidement les coopératives disponibles pour votre trajet depuis Antananarivo vers toute l'île.
+    </p>
+
+    <div class="cta">
+      <a href="index2.html">Commencer</a>
+    </div>
+
   </div>
 
-  <div class="feature">
-    <h3>📍 Informations utiles</h3>
-    <p>Accédez aux prix, horaires et numéros des coopératives facilement.</p>
-  </div>
+  <!-- FEATURES -->
+  <div class="features">
 
-  <div class="feature">
-    <h3>🚐 Plusieurs coop</h3>
-    <p>Comparez différentes options pour un même trajet.</p>
+    <div class="feature">
+      <h3>🔎 Recherche simple</h3>
+
+      <p>
+        Choisissez votre province et trouvez les trajets disponibles en quelques secondes.
+      </p>
+    </div>
+
+    <div class="feature">
+      <h3>📍 Informations utiles</h3>
+
+      <p>
+        Accédez aux prix, horaires et numéros des coopératives facilement.
+      </p>
+    </div>
+
+    <div class="feature">
+      <h3>🚐 Plusieurs coop</h3>
+
+      <p>
+        Comparez différentes options pour un même trajet.
+      </p>
+    </div>
+
   </div>
 
 </div>
@@ -189,12 +234,12 @@ body{
 <div class="footer">
   © 2026 Mada Trajet
 </div>
-<!-- ABOUT BUTTON -->
-<div class="about-btn" onclick="openAbout()">ℹ️ À propos</div>
 
 <!-- MODAL -->
 <div id="aboutModal" class="modal">
+
   <div class="modal-content">
+
     <span class="close" onclick="closeAbout()">✖</span>
 
     <h2>À propos de nous</h2>
@@ -220,13 +265,18 @@ body{
     </p>
 
     <p>
-      Si vous constatez des erreurs, veuillez nous en faire part au : <br>
+      Si vous constatez des erreurs, veuillez nous en faire part au :
+      <br><br>
+
       <strong>034 19 807 82</strong>
     </p>
+
   </div>
+
 </div>
 
 <script>
+
 function openAbout(){
   document.getElementById("aboutModal").style.display = "flex";
 }
@@ -235,13 +285,16 @@ function closeAbout(){
   document.getElementById("aboutModal").style.display = "none";
 }
 
-// fermer si clic dehors
 window.onclick = function(e){
+
   const modal = document.getElementById("aboutModal");
+
   if(e.target === modal){
     modal.style.display = "none";
   }
+
 }
+
 </script>
 
 </body>
