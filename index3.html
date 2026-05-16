@@ -2,57 +2,146 @@
 <html>
 <head>
 <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Choisir ville</title>
 
 <style>
-#villes{
-  margin-top:15px;
-  margin-bottom:25px; /* 💡 espace avant le bouton */
+
+body{
+  margin:0;
+  font-family:'Segoe UI', sans-serif;
+  background:#0f172a;
+  min-height:100vh;
   display:flex;
   flex-direction:column;
-  gap:10px; /* espace entre les cartes */
-}
-body{
-  font-family:Segoe UI;
-  background:#eef2f6;
 }
 
-.container{
-  max-width:800px;
-  margin:auto;
-  padding:30px;
+/* HAUT BLEU */
+.top{
+  padding:30px 20px;
+  text-align:center;
 }
 
-.card{
+.top h2{
+  color:white;
+  margin:0;
+  font-size:32px;
+}
+
+.top p{
+  color:#dbeafe;
+  margin-top:10px;
+}
+
+/* PARTIE BLANCHE */
+.main{
   background:white;
-  padding:30px;
-  border-radius:30px;
+  border-radius:30px 30px 0 0;
+  flex:1;
+  padding:40px 20px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
 }
 
+/* CARD */
+.card{
+  background:#f8fafc;
+  padding:20px;
+  border-radius:20px;
+  width:100%;
+  max-width:500px;
+  box-shadow:0 8px 25px rgba(0,0,0,0.08);
+}
+
+/* VILLES */
+#villes{
+  margin-top:15px;
+  margin-bottom:25px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+#villes label{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:14px 12px;
+  border-radius:14px;
+  background:white;
+  border:1px solid #ddd;
+  cursor:pointer;
+  transition:0.2s;
+}
+
+#villes label:hover{
+  background:#f1f5f9;
+  transform:scale(1.01);
+}
+
+#villes input[type="radio"]{
+  transform:scale(1.2);
+}
+
+/* BUTTON */
 button{
   width:100%;
   padding:15px;
-  background:#0d6efd;
+  background:#0f172a;
   color:white;
   border:none;
-  border-radius:10px;
+  border-radius:12px;
+  cursor:pointer;
+  font-size:16px;
+  transition:0.2s;
 }
+
+button:hover{
+  background:#1e293b;
+  transform:scale(1.02);
+}
+
+/* BAS BLEU */
+.footer{
+  text-align:center;
+  padding:18px;
+  color:white;
+  background:#0f172a;
+}
+
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<!-- HAUT -->
+<div class="top">
 
-<h2>Sélectionnez votre lieu d'arrivée</h2>
+  <h2>Sélectionnez votre lieu d'arrivée</h2>
 
-<form id="form2" class="card">
-<div id="villes"></div>
+  <p>
+    Choisissez une ville pour voir les coopératives disponibles
+  </p>
 
-<button>Rechercher</button>
-</form>
+</div>
 
+<!-- MILIEU BLANC -->
+<div class="main">
+
+  <form id="form2" class="card">
+
+    <div id="villes"></div>
+
+    <button>Confirmer</button>
+
+  </form>
+
+</div>
+
+<!-- BAS -->
+<div class="footer">
+  © 2026 Mada Trajet
 </div>
 
 <script src="data.js"></script>
@@ -60,14 +149,20 @@ button{
 <script>
 
 const region = localStorage.getItem("region");
+
 const villesDiv = document.getElementById("villes");
 
 const villes = mapping[region] || [];
 
 villes.forEach(v => {
+
 villesDiv.innerHTML += `
-<label><input type="radio" name="ville" value="${v}"> ${v}</label>
+<label>
+<input type="radio" name="ville" value="${v}">
+${v}
+</label>
 `;
+
 });
 
 document.getElementById("form2").addEventListener("submit", function(e){
@@ -77,11 +172,15 @@ e.preventDefault();
 const selected = document.querySelector('input[name="ville"]:checked');
 
 if(!selected){
+
 alert("Choisis une ville 😭");
+
 return;
+
 }
 
 localStorage.setItem("ville", selected.value);
+
 window.location.href="index4.html";
 
 });
