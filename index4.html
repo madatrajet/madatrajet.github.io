@@ -2,37 +2,123 @@
 <html>
 <head>
 <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Résultats</title>
 
 <style>
+
 body{
-  font-family:Segoe UI;
-  background:linear-gradient(180deg, #f8f9fb, #eef2f6);
-  padding:20px;
+  margin:0;
+  font-family:'Segoe UI', sans-serif;
+  background:#0f172a;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
 }
 
+/* HAUT BLEU */
+.top{
+  padding:30px 20px;
+  text-align:center;
+}
+
+.top h2{
+  color:white;
+  margin:0;
+  font-size:32px;
+}
+
+.top p{
+  color:#dbeafe;
+  margin-top:10px;
+}
+
+/* PARTIE BLANCHE */
+.main{
+  background:white;
+  border-radius:30px 30px 0 0;
+  flex:1;
+  padding:40px 20px;
+}
+
+/* CONTAINER */
 .container{
-  max-width:700px;
+  max-width:800px;
   margin:auto;
 }
 
-.card{
-  background:white;
-  border-radius:15px;
-  padding:15px;
-  margin:10px 0;
+/* RESULTATS */
+#resultat{
+  display:flex;
+  flex-direction:column;
+  gap:20px;
 }
+
+/* CARD */
+.card{
+  background:#f8fafc;
+  border:1px solid #ddd;
+  border-radius:20px;
+  padding:20px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.05);
+  transition:0.2s;
+}
+
+.card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 12px 25px rgba(0,0,0,0.08);
+}
+
+.card h3{
+  margin-top:0;
+  color:#0f172a;
+  font-size:24px;
+}
+
+.card p{
+  margin:10px 0;
+  color:#333;
+  line-height:1.5;
+}
+
+/* FOOTER */
+.footer{
+  text-align:center;
+  padding:18px;
+  color:white;
+  background:#0f172a;
+}
+
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<!-- HAUT -->
+<div class="top">
 
-<h2 id="title"></h2>
-<div id="resultat"></div>
+  <h2 id="title"></h2>
 
+  <p>
+    Voici les coopératives disponibles pour votre trajet
+  </p>
+
+</div>
+
+<!-- MILIEU BLANC -->
+<div class="main">
+
+  <div class="container">
+
+    <div id="resultat"></div>
+
+  </div>
+
+</div>
+
+<!-- BAS -->
+<div class="footer">
+  © 2026 Mada Trajet
 </div>
 
 <script src="data.js"></script>
@@ -40,33 +126,58 @@ body{
 <script>
 
 const ville = localStorage.getItem("ville");
+
 const depart = "Antananarivo";
 
-document.getElementById("title").innerText = `${depart} → ${ville}`;
+document.getElementById("title").innerText =
+`${depart} → ${ville}`;
 
 const resultats = busData.filter(b =>
-b.depart===depart && b.arrivee===ville
+b.depart === depart && b.arrivee === ville
 );
 
 const div = document.getElementById("resultat");
 
-if(resultats.length===0){
-div.innerHTML="<p>Aucun trajet 😕</p>";
-}
-else{
-resultats.forEach(b=>{
+if(resultats.length === 0){
 
-div.innerHTML+=`
+div.innerHTML = `
 <div class="card">
-<h3>${b.coop}</h3>
-<p>${b.depart} → ${b.arrivee}</p>
-<p>💰 ${b.prix || "Non défini"}</p>
-<p>⏰ ${b.heureDepart || "Non défini"}</p>
-<p>${b.numero.map(n=>"📞 "+n).join("<br>")}</p>
+<p>Aucun trajet 😕</p>
+</div>
+`;
+
+}
+
+else{
+
+resultats.forEach(b => {
+
+div.innerHTML += `
+<div class="card">
+
+<h3>🚍 ${b.coop}</h3>
+
+<p>
+📍 ${b.depart} → ${b.arrivee}
+</p>
+
+<p>
+💰 Prix : ${b.prix || "Non défini"}
+</p>
+
+<p>
+⏰ Départ : ${b.heureDepart || "Non défini"}
+</p>
+
+<p>
+${b.numero.map(n => "📞 " + n).join("<br>")}
+</p>
+
 </div>
 `;
 
 });
+
 }
 
 </script>
