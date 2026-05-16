@@ -1,6 +1,72 @@
 
 const busData = [
+/* =========================
+   🚍 KOFIMANGA
+========================= */
+{ depart:"Antananarivo", arrivee:"Moramanga", coop:"KOFIMANGA", prix:"12 000 Ar", heureDepart:"Non défini", numero:["034 17 322 33","033 14 667 22"] },
+{ depart:"Antananarivo", arrivee:"Toamasina", coop:"KOFIMANGA", prix:"Non défini", heureDepart:"Non défini", numero:["034 17 322 33","033 14 667 22"] },
 
+/* =========================
+   🚍 TRANS MAMY
+========================= */
+{ depart:"Antananarivo", arrivee:"Moramanga", coop:"Trans MAMY", prix:"Non défini", heureDepart:"Non défini", numero:[] },
+{ depart:"Antananarivo", arrivee:"Toamasina", coop:"Trans MAMY", prix:"Non défini", heureDepart:"Non défini", numero:[] },
+
+/* =========================
+   🚍 KOMPIMA
+========================= */
+{ depart:"Antananarivo", arrivee:"Moramanga", coop:"KOMPIMA", prix:"Non défini", heureDepart:"04:00 / 07:00 / 10:00 / 15:00 / 18:00", numero:["034 64 422 53","033 11 362 74"] },
+{ depart:"Antananarivo", arrivee:"Toamasina", coop:"KOMPIMA", prix:"Non défini", heureDepart:"04:00 / 07:00 / 10:00 / 15:00 / 18:00", numero:["034 64 422 53","033 11 362 74"] },
+
+/* =========================
+   🚍 TAFITA
+========================= */
+{ depart:"Antananarivo", arrivee:"Moramanga", coop:"TAFITA", prix:"Non défini", heureDepart:"Non défini", numero:["034 29 612 65"] },
+{ depart:"Antananarivo", arrivee:"Brickaville", coop:"TAFITA", prix:"Non défini", heureDepart:"09:00 / 15:00", numero:["034 29 612 65"] },
+{ depart:"Antananarivo", arrivee:"Toamasina", coop:"TAFITA", prix:"Non défini", heureDepart:"Non défini", numero:["034 29 612 65"] },
+
+/* =========================
+   🚍 TRANS ALPHA PLUS
+========================= */
+{ depart:"Antananarivo", arrivee:"Vatomandry", coop:"Trans ALPHA Plus", prix:"30 000 Ar", heureDepart:"15:00", numero:["034 54 908 23","033 11 230 92"] },
+{ depart:"Antananarivo", arrivee:"Ilakaka Est", coop:"Trans ALPHA Plus", prix:"30 000 Ar", heureDepart:"15:00", numero:["034 54 908 23","033 11 230 92"] },
+{ depart:"Antananarivo", arrivee:"Mahanoro", coop:"Trans ALPHA Plus", prix:"45 000 Ar", heureDepart:"15:00", numero:["034 54 908 23","033 11 230 92"] },
+
+/* =========================
+   🚍 TRANS PLUS
+========================= */
+{ depart:"Antananarivo", arrivee:"Mahanoro", coop:"Trans PLUS", prix:"45 000 Ar", heureDepart:"10:00 / 12:00 / 18:00", numero:["033 54 642 20","034 37 737 94"] },
+{ depart:"Antananarivo", arrivee:"Ambatomandry", coop:"Trans PLUS", prix:"30 000 Ar", heureDepart:"10:00 / 12:00 / 18:00", numero:["033 54 642 20","034 37 737 94"] },
+
+/* =========================
+   🚍 SONATRA
+========================= */
+{ depart:"Antananarivo", arrivee:"Vatomandry", coop:"SONATRA", prix:"30 000 Ar", heureDepart:"07:00", numero:["033 20 911 47"] },
+{ depart:"Antananarivo", arrivee:"Mahanoro", coop:"SONATRA", prix:"45 000 Ar", heureDepart:"07:00 / 09:00 / 15:00", numero:["038 51 111 95","033 27 652 27"] },
+
+/* =========================
+   🚍 COOPÉRATIVE MIRAY
+========================= */
+{ depart:"Antananarivo", arrivee:"Moramanga", coop:"Coopérative MIRAY", prix:"Non défini", heureDepart:"Non défini", numero:["034 39 859 92","033 21 857 21"] },
+{ depart:"Antananarivo", arrivee:"Toamasina", coop:"Coopérative MIRAY", prix:"Non défini", heureDepart:"Non défini", numero:["034 39 859 92","033 21 857 21"] },
+
+/* =========================
+   🚍 KOFIZAMI
+========================= */
+{ depart:"Antananarivo", arrivee:"Ambatomanjina", coop:"KOFIZAMI", prix:"90 000 Ar / 120 000 Ar", heureDepart:"02:00 / 04:00 / 08:00", numero:["038 42 783 26"] },
+{ depart:"Antananarivo", arrivee:"Antanetibe", coop:"KOFIZAMI", prix:"90 000 Ar / 120 000 Ar", heureDepart:"02:00 / 04:00 / 08:00", numero:["038 42 783 26"] },
+{ depart:"Antananarivo", arrivee:"Betatao", coop:"KOFIZAMI", prix:"90 000 Ar / 120 000 Ar", heureDepart:"02:00 / 04:00 / 08:00", numero:["038 42 783 26"] },
+{ depart:"Antananarivo", arrivee:"Anjozorobe", coop:"KOFIZAMI", prix:"10 000 Ar", heureDepart:"02:00 / 04:00 / 08:00", numero:["033 83 234 27","034 72 653 07","038 84 652 23"] },
+
+/* =========================
+   🚍 SOTRATE
+========================= */
+{ depart:"Antananarivo", arrivee:"Anjozorobe", coop:"SOTRATE", prix:"10 000 Ar", heureDepart:"04:00 → 16:00", numero:["034 22 777 41","038 67 232 17"] },
+
+/* =========================
+   🚍 KOFILA
+========================= */
+{ depart:"Antananarivo", arrivee:"Mangamila", coop:"KOFILA", prix:"9 000 Ar", heureDepart:"04:00 → 16:00", numero:["034 43 171 83","032 41 587 62","033 22 535 11"] },
 /* =========================
    🚍 TRANS TAFITA
 ========================= */
@@ -113,7 +179,12 @@ const mapping = {
   Toamasina: [
     "Toamasina",
     "Brickaville",
-    "Fenerive Est"
+    "Fenerive Est",
+    "Moramanga",
+    "Vatomandry",
+    "Mahanoro",
+    "Ambatomandry",
+    "Ilakaka Est"
   ],
 
   Mahajanga: [
@@ -150,7 +221,12 @@ const mapping = {
     "Tsiroanomandidy",
     "Faratsiho",
     "Analavory",
-    "Ifanja"
+    "Ifanja",
+    "Anjozorobe",
+    "Mangamila",
+    "Ambatomanjina",
+    "Antanetibe",
+    "Betatao"
   ]
 
 };
