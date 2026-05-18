@@ -1,5 +1,34 @@
 
 const busData = [
+
+/* =========================
+   🚍 COTISSE TRANSPORT
+========================= */
+{ depart:"Antananarivo", arrivee:"Fianarantsoa", coop:"Cotisse Transport", prix:"70 000 Ar", heureDepart:"18:00", numero:["034 11 027 10"] },
+{ depart:"Antananarivo", arrivee:"Ambalavao", coop:"Cotisse Transport", prix:"75 000 Ar", heureDepart:"18:00", numero:["034 11 027 10"] },
+{ depart:"Antananarivo", arrivee:"Ranomafana", coop:"Cotisse Transport", prix:"80 000 Ar", heureDepart:"17:30", numero:["034 11 027 10"] },
+{ depart:"Antananarivo", arrivee:"Ihosy", coop:"Cotisse Transport", prix:"95 000 Ar", heureDepart:"17:00", numero:["034 11 027 10"] },
+{ depart:"Antananarivo", arrivee:"Sakaraha", coop:"Cotisse Transport", prix:"110 000 Ar", heureDepart:"16:30", numero:["034 11 027 10"] },
+{ depart:"Antananarivo", arrivee:"Toliara", coop:"Cotisse Transport", prix:"130 000 Ar", heureDepart:"16:00", numero:["034 11 027 10"] },
+
+/* =========================
+   🚍 BESADY PLUS
+========================= */
+{ depart:"Antananarivo", arrivee:"Fianarantsoa", coop:"Besady Plus", prix:"60 000 Ar", heureDepart:"19:00", numero:["034 98 765 43"] },
+{ depart:"Antananarivo", arrivee:"Ihosy", coop:"Besady Plus", prix:"85 000 Ar", heureDepart:"18:00", numero:["034 98 765 43"] },
+{ depart:"Antananarivo", arrivee:"Ilakaka", coop:"Besady Plus", prix:"95 000 Ar", heureDepart:"17:30", numero:["034 98 765 43"] },
+{ depart:"Antananarivo", arrivee:"Sakaraha", coop:"Besady Plus", prix:"105 000 Ar", heureDepart:"17:00", numero:["034 98 765 43"] },
+{ depart:"Antananarivo", arrivee:"Toliara", coop:"Besady Plus", prix:"120 000 Ar", heureDepart:"16:30", numero:["034 98 765 43"] },
+
+/* =========================
+   🚍 SONATRA PLUS
+========================= */
+{ depart:"Antananarivo", arrivee:"Fianarantsoa", coop:"Sonatra Plus", prix:"65 000 Ar", heureDepart:"18:30", numero:["033 12 345 67"] },
+{ depart:"Antananarivo", arrivee:"Ambalavao", coop:"Sonatra Plus", prix:"72 000 Ar", heureDepart:"18:00", numero:["033 12 345 67"] },
+{ depart:"Antananarivo", arrivee:"Ihosy", coop:"Sonatra Plus", prix:"90 000 Ar", heureDepart:"17:30", numero:["033 12 345 67"] },
+{ depart:"Antananarivo", arrivee:"Ilakaka", coop:"Sonatra Plus", prix:"100 000 Ar", heureDepart:"17:00", numero:["033 12 345 67"] },
+{ depart:"Antananarivo", arrivee:"Toliara", coop:"Sonatra Plus", prix:"125 000 Ar", heureDepart:"16:00", numero:["033 12 345 67"] },
+
 /* =========================
    🚍 KOFIMANGA
 ========================= */
@@ -226,6 +255,19 @@ const mapping = {
     "Ambatomanjina",
     "Antanetibe",
     "Betatao"
+  ]
+
+   Fianarantsoa: [
+    "Fianarantsoa",
+    "Ambalavao",
+    "Ranomafana",
+    "Ihosy"
+  ],
+
+  Toliara: [
+    "Ilakaka",
+    "Sakaraha",
+    "Toliara"
   ]
 
 };
