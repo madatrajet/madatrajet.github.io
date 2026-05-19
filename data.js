@@ -255,7 +255,7 @@ const mapping = {
     "Ambatomanjina",
     "Antanetibe",
     "Betatao"
-  ]
+  ],
 
    Fianarantsoa: [
     "Fianarantsoa",
