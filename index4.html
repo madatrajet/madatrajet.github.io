@@ -4,9 +4,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Résultats</title>
-  <link rel="icon" type="png" href="image.png">
 
 <style>
+
+.btn-retour{
+  display:inline-block;
+  padding:10px 18px;
+  background:#030507;
+  color:white;
+  text-decoration:none;
+  border-radius:8px;
+  font-weight:bold;
+  margin:20px;
+}
 
 body{
   margin:0;
@@ -17,7 +27,6 @@ body{
   flex-direction:column;
 }
 
-/* HAUT BLEU */
 .top{
   padding:30px 20px;
   text-align:center;
@@ -34,7 +43,6 @@ body{
   margin-top:10px;
 }
 
-/* PARTIE BLANCHE */
 .main{
   background:white;
   border-radius:30px 30px 0 0;
@@ -42,47 +50,29 @@ body{
   padding:40px 20px;
 }
 
-/* CONTAINER */
 .container{
   max-width:800px;
   margin:auto;
 }
 
-/* RESULTATS */
 #resultat{
   display:flex;
   flex-direction:column;
   gap:20px;
 }
 
-/* CARD */
 .card{
   background:#f8fafc;
   border:1px solid #ddd;
   border-radius:20px;
   padding:20px;
   box-shadow:0 8px 20px rgba(0,0,0,0.05);
-  transition:0.2s;
-}
-
-.card:hover{
-  transform:translateY(-4px);
-  box-shadow:0 12px 25px rgba(0,0,0,0.08);
 }
 
 .card h3{
   margin-top:0;
-  color:#0f172a;
-  font-size:24px;
 }
 
-.card p{
-  margin:10px 0;
-  color:#333;
-  line-height:1.5;
-}
-
-/* FOOTER */
 .footer{
   text-align:center;
   padding:18px;
@@ -95,18 +85,14 @@ body{
 
 <body>
 
-<!-- HAUT -->
 <div class="top">
-
   <h2 id="title"></h2>
 
   <p>
-    Voici les coopératives disponibles pour votre trajet
+    Voici les coopératives disponibles
   </p>
-
 </div>
 
-<!-- MILIEU BLANC -->
 <div class="main">
 
   <div class="container">
@@ -117,7 +103,6 @@ body{
 
 </div>
 
-<!-- BAS -->
 <div class="footer">
   © 2026 Mada Trajet
 </div>
@@ -126,62 +111,132 @@ body{
 
 <script>
 
-const ville = localStorage.getItem("ville");
+/* NORMALIZE */
+function normalize(s){
+  return (s || "")
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g," ");
+}
 
-const depart = "Antananarivo";
+/* STORAGE */
+const villeRaw = localStorage.getItem("ville") || "";
+const gareChoisie = localStorage.getItem("gare") || "";
 
+/* NORMALIZED */
+const ville = normalize(villeRaw);
+
+/* TITRE */
 document.getElementById("title").innerText =
-`${depart} → ${ville}`;
+`Antananarivo → ${villeRaw}`;
 
-const resultats = busData.filter(b =>
-b.depart === depart && b.arrivee === ville
-);
+/* FILTRE */
+const resultats = busData.filter(bus => {
 
+  const trajetOK =
+    normalize(bus.depart) === "antananarivo"
+    &&
+    normalize(bus.arrivee) === ville;
+
+  /* SI PAS DE GARE CHOISIE */
+  if(!gareChoisie || gareChoisie === "autres"){
+    return trajetOK;
+  }
+
+  /* FILTRE GARE */
+  let gareTexte = "";
+
+  if(gareChoisie === "ampasapito"){
+    gareTexte = "Gare Routière Ampasapito";
+  }
+
+  else if(gareChoisie === "fasannykarana"){
+    gareTexte = "Fasan'ny Karana";
+  }
+
+  else if(gareChoisie === "maki"){
+    gareTexte = "Gare MAKI Andohatapenaka";
+  }
+
+  return trajetOK && bus.gare === gareTexte;
+
+});
+
+/* UPDATE TITLE */
+document.getElementById("title").innerText =
+`Antananarivo → ${villeRaw}
+(${resultats.length} trajets trouvés)`;
+
+/* DIV */
 const div = document.getElementById("resultat");
 
+/* NO RESULT */
 if(resultats.length === 0){
 
-div.innerHTML = `
-<div class="card">
-<p>Aucun trajet 😕</p>
-</div>
-`;
+  div.innerHTML = `
+  <div class="card">
+    <h3>Aucun trajet 😭</h3>
+
+    <p>
+      Aucun résultat trouvé pour cette destination.
+    </p>
+  </div>
+  `;
 
 }
 
+/* RESULTATS */
 else{
 
-resultats.forEach(b => {
+  resultats.forEach(bus => {
 
-div.innerHTML += `
-<div class="card">
+    div.innerHTML += `
+    <div class="card">
 
-<h3>🚍 ${b.coop}</h3>
+      <h3>🚍 ${bus.coop}</h3>
 
-<p>
-📍 ${b.depart} → ${b.arrivee}
-</p>
+      <p>
+        📍 ${bus.depart} → ${bus.arrivee}
+      </p>
 
-<p>
-💰 Prix : ${b.prix || "Non défini"}
-</p>
+      <p>
+        🏢 ${bus.gare}
+      </p>
 
-<p>
-⏰ Départ : ${b.heureDepart || "Non défini"}
-</p>
+      <p>
+        💰 ${bus.prix || "Non défini"}
+      </p>
 
-<p>
-${b.numero.map(n => "📞 " + n).join("<br>")}
-</p>
+      <p>
+        ⏰ ${bus.heureDepart || "Non défini"}
+      </p>
 
-</div>
-`;
+      <p>
+        ${
+          bus.numero.length > 0
+          ?
+          bus.numero.map(n => `
+            <a href="tel:${n.replace(/ /g,'')}">
+              📞 ${n}
+            </a>
+          `).join("<br>")
+          :
+          "Numéro indisponible"
+        }
+      </p>
 
-});
+    </div>
+    `;
+
+  });
 
 }
 
 </script>
+
+<a href="index.html" class="btn-retour">
+⬅ Retour
+</a>
 
 </body>
 </html>
