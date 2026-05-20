@@ -4,9 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Choisir ville</title>
-  <link rel="icon" type="png" href="image.png">
 
 <style>
+
+.advanced-btn{
+  margin-top:12px;
+  background:#ba1111;
+}
+
+.advanced-btn:hover{
+  background:#ba1111;
+}
 
 body{
   margin:0;
@@ -134,7 +142,15 @@ button:hover{
 
     <div id="villes"></div>
 
-    <button>Confirmer</button>
+    <button type="submit">
+  Voir les trajets
+    </button>
+
+    <button
+  type="button"
+  class="advanced-btn"
+  onclick="rechercheAvancee()">Recherche avancée
+    </button>
 
   </form>
 
@@ -185,6 +201,29 @@ localStorage.setItem("ville", selected.value);
 window.location.href="index4.html";
 
 });
+
+function rechercheAvancee(){
+
+const selected =
+document.querySelector('input[name="ville"]:checked');
+
+if(!selected){
+
+alert("Choisis une ville 😭");
+
+return;
+
+}
+
+localStorage.setItem(
+"ville",
+selected.value
+);
+
+window.location.href =
+"indexgare.html";
+
+}
 
 </script>
 
