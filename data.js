@@ -30,6 +30,13 @@ const busData = [
 { depart:"Antananarivo", arrivee:"Toliara", coop:"Sonatra Plus", prix:"125 000 Ar", heureDepart:"16:00", numero:["033 12 345 67"] },
 
 /* =========================
+   🚍 SOTRATE
+========================= */
+{ depart:"Antananarivo", arrivee:"Fianarantsoa", coop:"Sotrate", prix:"55 000 Ar", heureDepart:"20:00", numero:["032 22 456 78"] },
+{ depart:"Antananarivo", arrivee:"Ambalavao", coop:"Sotrate", prix:"60 000 Ar", heureDepart:"19:30", numero:["032 22 456 78"] },
+{ depart:"Antananarivo", arrivee:"Ihosy", coop:"Sotrate", prix:"80 000 Ar", heureDepart:"18:30", numero:["032 22 456 78"] },
+
+/* =========================
    🚍 KOFIMANGA
 ========================= */
 { depart:"Antananarivo", arrivee:"Moramanga", coop:"KOFIMANGA", prix:"12 000 Ar", heureDepart:"Non défini", numero:["034 17 322 33","033 14 667 22"] },
@@ -256,7 +263,7 @@ const mapping = {
     "Antanetibe",
     "Betatao"
   ],
-
+  
    Fianarantsoa: [
     "Fianarantsoa",
     "Ambalavao",
@@ -271,3 +278,64 @@ const mapping = {
   ]
 
 };
+
+const gareMapping = {
+  // Fasan'ny Karana
+  "Cotisse Transport": "Fasan'ny Karana",
+  "Besady Plus": "Fasan'ny Karana",
+  "Sonatra Plus": "Fasan'ny Karana",
+
+  // Gare Routière Ampasapito
+  "KOFIMANGA": "Gare Routière Ampasapito",
+  "Trans MAMY": "Gare Routière Ampasapito",
+  "KOMPIMA": "Gare Routière Ampasapito",
+  "TAFITA": "Gare Routière Ampasapito",
+  "Trans ALPHA Plus": "Gare Routière Ampasapito",
+  "Trans PLUS": "Gare Routière Ampasapito",
+  "SONATRA": "Gare Routière Ampasapito",
+  "Coopérative MIRAY": "Gare Routière Ampasapito",
+  "KOFIZAMI": "Gare Routière Ampasapito",
+  "KOFILA": "Gare Routière Ampasapito",
+
+  // Gare MAKI Andohatapenaka
+  "Trans Tafita": "Gare MAKI Andohatapenaka",
+  "KOFMAD": "Gare MAKI Andohatapenaka",
+  "KOP FMM": "Gare MAKI Andohatapenaka",
+  "KOFISA": "Gare MAKI Andohatapenaka",
+  "COTRANSMA": "Gare MAKI Andohatapenaka",
+  "COFIMANDIDY": "Gare MAKI Andohatapenaka",
+  "KOFITSIRO": "Gare MAKI Andohatapenaka",
+  "FIFIDY": "Gare MAKI Andohatapenaka",
+  "Trans Besady": "Gare MAKI Andohatapenaka",
+  "VANOFOTSY": "Gare MAKI Andohatapenaka",
+  "TRANSROUTE": "Gare MAKI Andohatapenaka"
+};
+
+busData.forEach(bus => {
+  // Tous les trajets sud → Fasan'ny Karana
+  if (
+    mapping.Fianarantsoa.includes(bus.arrivee) ||
+    mapping.Toliara.includes(bus.arrivee)
+  ) {
+    bus.gare = "Fasan'ny Karana";
+  }
+  
+  // Cas spécial Sotrate
+  else if (
+    bus.coop === "Sotrate" ||
+    bus.coop === "SOTRATE"
+  ) {
+    if (
+      bus.arrivee === "Anjozorobe"
+    ) {
+      bus.gare = "Gare Routière Ampasapito";
+    } else {
+      bus.gare = "Fasan'ny Karana";
+    }
+  }
+
+  // Toutes les autres coop
+  else {
+    bus.gare = gareMapping[bus.coop] || "Gare inconnue";
+  }
+});
